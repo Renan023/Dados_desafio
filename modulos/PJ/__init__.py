@@ -20,6 +20,7 @@ class PJuridica:
                 f'Setor {self.setor}')
 
     def dados(self):
+        #devolutiva dos dados de Pessoa juridicacom temporizador e separador
         funcoes.title('Cadastro Finalizado')
         funcoes.PrintcomPausa(f'Razão Social: {self.RazaoSocial}')
         funcoes.PrintcomPausa(f'Nome Fantasia: {self.NomeFantasia}')

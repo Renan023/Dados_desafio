@@ -1,6 +1,7 @@
 from modulos import character
 
 def VRG(rg):
+    #validador para RG
     while True:
         try:
             rg = character.character(rg).strip().replace('.','').replace('-','').upper()
@@ -15,6 +16,7 @@ def VRG(rg):
             return rg
 
 def VCPF(cpf):
+    #validador para CPF
     while True:
         try:
             cpf = character.character(cpf).strip().replace('.','').replace('-','')
@@ -29,6 +31,7 @@ def VCPF(cpf):
             return cpf
 
 def VCNPJ(cnpj):
+    #validador para CNPJ
     while True:
         try:
             cnpj = character.character(cnpj).strip().replace('/','').replace('.','').replace('-','')
@@ -42,6 +45,7 @@ def VCNPJ(cnpj):
             return cnpj
 
 def VIE(ie):
+    #validador de inscrição estadual
     while True:
         try:
             ie = character.character(ie).strip().replace('.','').replace('-','')

@@ -1,4 +1,5 @@
 def num(n):
+    #validador para números
     while True:
         try:
             num = int(input(n))

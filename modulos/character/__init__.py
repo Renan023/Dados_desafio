@@ -1,4 +1,5 @@
 def character(char):
+    #validaçao para caracteres somente
     while True:
         try:
             char = input(char).capitalize()
@@ -12,6 +13,7 @@ def character(char):
             return char
 
 def question():
+    #validação para questões de sim ou não
     while True:
         try:
             resp = character('').strip().upper()[0]

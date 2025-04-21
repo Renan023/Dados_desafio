@@ -1,6 +1,7 @@
 from modulos import character
 
 def sexo(sexo):
+    #validação para sexo masculino ou feminino
     while True:
         try:
             sexo = character.character(sexo).strip().upper()[0]
@@ -14,6 +15,7 @@ def sexo(sexo):
             return sexo
         
 def email(email):
+    #validação para email
     while True:
         try:
             email = character.character(email).strip().lower()
@@ -30,6 +32,7 @@ def email(email):
             return email
 
 def tel(tel):
+    #validação para telefone
     while True:
         try:
             tel = character.character(tel).strip()
@@ -43,6 +46,7 @@ def tel(tel):
             return tel
 
 def site(site):
+    #validação para site
     while True:
         try:
             site = character.character(site).strip().lower()

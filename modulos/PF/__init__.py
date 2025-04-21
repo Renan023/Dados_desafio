@@ -20,6 +20,7 @@ class PFisica:
                 f'RG: {self.rg}, CPF: {self.cpf}, E-mail: {self.email}, Telefone: {self.tel}')
 
     def dados(self):
+        #devolutiva de dados de pessoa fisica com temporizador e separador
         funcoes.title('Cadastro Finalizado')
         funcoes.PrintcomPausa(f'Nome: {self.nome}')
         funcoes.PrintcomPausa(f'Nasc: {self.nasc}')
