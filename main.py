@@ -1,7 +1,7 @@
 #importação do locale para a configuração regional
 import locale
 #módulos importados devidamente separados para a organizaçao do código
-from modulos import character, number , funcoes, PF, DadosPessoais, Documentos, PJ, Excel
+from modulos import character, number , funcoes, PF, DadosPessoais, Documentos, PJ, Excel_cadastro
 #importação para ajustar a data
 import datetime as dt
 #importação para colocar como temporizador
@@ -83,7 +83,7 @@ while True:
         #mostra quantos foram cadastrados tanto de pessoa fisica como juridica
         funcoes.PrintcomPausa(f'Foram contabilizados {cf} Pessoa Fisica e {cj} Pessoa Juridíca')
         #Exporto para o excel antes de sair
-        Excel.exportExcel(cadastro_PF, cadastro_PJ)
+        Excel_cadastro.cadastro_excel(cadastro_PF, cadastro_PJ)
         #encerra o loop
         break
     else:
