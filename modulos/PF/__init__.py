@@ -1,10 +1,14 @@
 import datetime as dt
-at = dt.datetime.now().year
 from modulos import funcoes
 import time
 
+at = dt.datetime.now().year
+now = dt.datetime.now().date()
+
 class PFisica:
     def __init__(self, nome, nasc,  sexo,  rg, cpf, endereco, email, tel ):
+        self.ID = funcoes.ID()
+        self.data = now.strftime('%d/%m/%Y')
         self.nome = nome
         self.nasc = nasc
         self.idade = at - nasc
@@ -22,6 +26,8 @@ class PFisica:
     def dados(self):
         #devolutiva de dados de pessoa fisica com temporizador e separador
         funcoes.title('Cadastro Finalizado')
+        funcoes.PrintcomPausa(f'ID: {self.ID}')
+        funcoes.PrintcomPausa(f'Data: {self.data}')
         funcoes.PrintcomPausa(f'Nome: {self.nome}')
         funcoes.PrintcomPausa(f'Nasc: {self.nasc}')
         funcoes.PrintcomPausa(f'Idade: {self.idade}')

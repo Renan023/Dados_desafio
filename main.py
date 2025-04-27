@@ -30,7 +30,7 @@ user = character.character(f'Qual seu nome? ')
 funcoes.separador()
 time.sleep(0.4)
 #saudação com o dia da semana e dia, mês e ano
-print(f'Olá {user}, vamos dar inicio aos cadastros da {now.strftime(f'%A dia %d/%m/%Y')}')
+print(f'Olá {user}, vamos dar inicio aos cadastros da {now.strftime('%A dia %d/%m/%Y')}')
 funcoes.separador()
 
 time.sleep(0.4)
@@ -80,10 +80,11 @@ while True:
         print('Agora vamos terminar os cadastros e descansar por hoje \o/')
         time.sleep(0.6)
         funcoes.separador()
-        #mostra quantos foram cadastrados tanto de pessoa fisica como juridica
-        funcoes.PrintcomPausa(f'Foram contabilizados {cf} Pessoa Fisica e {cj} Pessoa Juridíca')
         #Exporto para o excel antes de sair
         Excel_cadastro.cadastro_excel(cadastro_PF, cadastro_PJ)
+        funcoes.separador()
+        #mostra quantos foram cadastrados tanto de pessoa fisica como juridica
+        funcoes.PrintcomPausa(f'Foram contabilizados {cf} Pessoa Fisica e {cj} Pessoa Juridíca')
         #encerra o loop
         break
     else:
