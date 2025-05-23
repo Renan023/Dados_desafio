@@ -6,6 +6,12 @@ from modulos import character, number , funcoes, PF, DadosPessoais, Documentos, 
 import datetime as dt
 #importação para colocar como temporizador
 import time
+#importação do arquivo de excel vazio
+from modulos.Excel_criar import Excel_vazio
+from modulos.Excel_cadastro import cadastro_excel
+from modulos.Excel_aba import create_aba
+from modulos.Excel_remove import remove
+
 
 #listas vazias para armazenar cadastro de PF e PJ
 cadastro_PF , cadastro_PJ = [] , []
@@ -13,9 +19,11 @@ cadastro_PF , cadastro_PJ = [] , []
 now = dt.datetime.now()
 #inicializador dos contadores
 cf , cj = 0, 0
-#configuração regional no caso o Brasil em português, com suas devidas formatações conforme padrão brassileiro
+nome_arquivo = 'cadastro.xlsx'
+sheet_PF = 'Pessoa Física'
+sheet_PJ = 'Pessoa Jurídica'
+#configuração regional no caso o Brasil em português, com suas devidas formatações conforme padrão brasileiro
 locale.setlocale(locale.LC_TIME,'Portuguese_Brazil.1252')
-
 
 funcoes.animation('Inicializando...')
 
@@ -26,13 +34,14 @@ print(now.strftime(f'Horário: %H:%M'))
 time.sleep(0.4)
 #pergunta o nome do usuário
 user = character.character(f'Qual seu nome? ')
-
+funcoes.separador()
+#criação do arquivo Excel 
+Excel_vazio(nome_arquivo)
 funcoes.separador()
 time.sleep(0.4)
 #saudação com o dia da semana e dia, mês e ano
-print(f'Olá {user}, vamos dar inicio aos cadastros da {now.strftime('%A dia %d/%m/%Y')}')
+print(f"Olá {user}, vamos dar inicio aos cadastros da {now.strftime('%A dia %d/%m/%Y')}")
 funcoes.separador()
-
 time.sleep(0.4)
 funcoes.title('Cadastro')
 
@@ -80,8 +89,16 @@ while True:
         print('Agora vamos terminar os cadastros e descansar por hoje \o/')
         time.sleep(0.6)
         funcoes.separador()
-        #Exporto para o excel antes de sair
-        Excel_cadastro.cadastro_excel(cadastro_PF, cadastro_PJ)
+        #chama a função do arquivo de excel para pessoa física
+        if cadastro_PF:
+            cadastro_excel(nome_arquivo,cadastro_PF, sheet_PF)
+            remove(nome_arquivo)
+            create_aba(nome_arquivo,sheet_PF)
+            
+        if cadastro_PJ:
+            cadastro_excel(nome_arquivo,cadastro_PJ,sheet_PJ)
+            create_aba(nome_arquivo,sheet_PJ)
+            
         funcoes.separador()
         #mostra quantos foram cadastrados tanto de pessoa fisica como juridica
         funcoes.PrintcomPausa(f'Foram contabilizados {cf} Pessoa Fisica e {cj} Pessoa Juridíca')
