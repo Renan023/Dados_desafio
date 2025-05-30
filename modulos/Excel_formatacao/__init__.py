@@ -1,6 +1,6 @@
-from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table,TableStyleInfo
+from openpyxl.styles import Alignment
 
 def ajuste(sheet):
     #ajuste 
@@ -36,3 +36,11 @@ def criar_tabela(sheet,nome_tabela):
     sheet.add_table(tabela)
     
     print(f"Tabela {nome_tabela} criado com sucesso")
+    
+def alinhar(sheet):
+        
+        alinhamento = Alignment(horizontal="center",vertical="center")
+        
+        for row in sheet.iter_rows(min_row = 1, max_row= sheet.max_row, min_col = 1, max_col=sheet.max_column):
+            for cell in row:
+                cell.alignment = alinhamento

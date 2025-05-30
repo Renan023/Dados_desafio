@@ -1,7 +1,7 @@
 from openpyxl import load_workbook
 from modulos.Excel_criar import Excel_vazio
 from modulos.Excel_cadastro import cadastro_excel
-from modulos.Excel_formatacao import ajuste, criar_tabela
+from modulos.Excel_formatacao import ajuste, criar_tabela, alinhar
 from modulos.Excel_remove import remove
 
 def gerenciar(nome_arquivo, lista_dados, sheet,nome_tabela):
@@ -14,6 +14,7 @@ def gerenciar(nome_arquivo, lista_dados, sheet,nome_tabela):
     if sheet in wb.sheetnames:
         aba = wb[sheet]
         ajuste(aba)
+        alinhar(aba)
         criar_tabela(aba,nome_tabela)
         
     wb.save(nome_arquivo)
