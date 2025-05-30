@@ -1,16 +1,15 @@
 #importação do locale para a configuração regional
 import locale
-#módulos importados devidamente separados para a organizaçao do código
-from modulos import character, number , funcoes, PF, DadosPessoais, Documentos, PJ, Excel_cadastro
 #importação para ajustar a data
 import datetime as dt
 #importação para colocar como temporizador
 import time
+#módulos importados devidamente separados para a organizaçao do código
+from modulos import character, number , funcoes, PF, DadosPessoais, Documentos, PJ
 #importação do arquivo de excel vazio
 from modulos.Excel_criar import Excel_vazio
-from modulos.Excel_cadastro import cadastro_excel
-from modulos.Excel_aba import create_aba
-from modulos.Excel_remove import remove
+#unificação dos módulos de excel
+from modulos.Gerenciador_Excel import gerenciador_semcriar
 
 
 #listas vazias para armazenar cadastro de PF e PJ
@@ -20,8 +19,10 @@ now = dt.datetime.now()
 #inicializador dos contadores
 cf , cj = 0, 0
 nome_arquivo = 'cadastro.xlsx'
-sheet_PF = 'Pessoa Física'
-sheet_PJ = 'Pessoa Jurídica'
+sheet_PF = "Pessoa Física"
+sheet_PJ = "Pessoa Jurídica"
+nome_tabelaPF = "PFísica"
+nome_tabelaPJ = "PJurídica"
 #configuração regional no caso o Brasil em português, com suas devidas formatações conforme padrão brasileiro
 locale.setlocale(locale.LC_TIME,'Portuguese_Brazil.1252')
 
@@ -91,14 +92,10 @@ while True:
         funcoes.separador()
         #chama a função do arquivo de excel para pessoa física
         if cadastro_PF:
-            cadastro_excel(nome_arquivo,cadastro_PF, sheet_PF)
-            remove(nome_arquivo)
-            create_aba(nome_arquivo,sheet_PF)
-            
+            gerenciador_semcriar(nome_arquivo,cadastro_PF,sheet_PF,nome_tabelaPF)
+        #chama a função para pessoa jurídica    
         if cadastro_PJ:
-            cadastro_excel(nome_arquivo,cadastro_PJ,sheet_PJ)
-            create_aba(nome_arquivo,sheet_PJ)
-            
+            gerenciador_semcriar(nome_arquivo,cadastro_PJ,sheet_PJ,nome_tabelaPJ)
         funcoes.separador()
         #mostra quantos foram cadastrados tanto de pessoa fisica como juridica
         funcoes.PrintcomPausa(f'Foram contabilizados {cf} Pessoa Fisica e {cj} Pessoa Juridíca')
