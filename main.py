@@ -18,11 +18,14 @@ cadastro_PF , cadastro_PJ = [] , []
 now = dt.datetime.now()
 #inicializador dos contadores
 cf , cj = 0, 0
+
 nome_arquivo = 'cadastro.xlsx'
 sheet_PF = "Pessoa Física"
 sheet_PJ = "Pessoa Jurídica"
 nome_tabelaPF = "PFísica"
 nome_tabelaPJ = "PJurídica"
+fonte = 'FFFFFF'
+fundo = '1F4E78'
 #configuração regional no caso o Brasil em português, com suas devidas formatações conforme padrão brasileiro
 locale.setlocale(locale.LC_TIME,'Portuguese_Brazil.1252')
 
@@ -92,10 +95,10 @@ while True:
         funcoes.separador()
         #chama a função do arquivo de excel para pessoa física
         if cadastro_PF:
-            gerenciador_semcriar(nome_arquivo,cadastro_PF,sheet_PF,nome_tabelaPF)
+            gerenciador_semcriar(nome_arquivo,cadastro_PF,sheet_PF,fundo,fonte,nome_tabelaPF)
         #chama a função para pessoa jurídica    
         if cadastro_PJ:
-            gerenciador_semcriar(nome_arquivo,cadastro_PJ,sheet_PJ,nome_tabelaPJ)
+            gerenciador_semcriar(nome_arquivo,cadastro_PJ,sheet_PJ,fundo, fonte,nome_tabelaPJ)
         funcoes.separador()
         #mostra quantos foram cadastrados tanto de pessoa fisica como juridica
         funcoes.PrintcomPausa(f'Foram contabilizados {cf} Pessoa Fisica e {cj} Pessoa Juridíca')

@@ -1,10 +1,10 @@
 from openpyxl import load_workbook
 from modulos.Excel_criar import Excel_vazio
 from modulos.Excel_cadastro import cadastro_excel
-from modulos.Excel_formatacao import ajuste, criar_tabela, alinhar
+from modulos.Excel_formatacao import ajuste, criar_tabela, alinhar, cabecalho, bordas, congelar_cabecalho
 from modulos.Excel_remove import remove
 
-def gerenciar(nome_arquivo, lista_dados, sheet,nome_tabela):
+def gerenciar(nome_arquivo, lista_dados, sheet,background, font, nome_tabela):
     
     #cadastra
     cadastro_excel(nome_arquivo, lista_dados, sheet)
@@ -15,6 +15,9 @@ def gerenciar(nome_arquivo, lista_dados, sheet,nome_tabela):
         aba = wb[sheet]
         ajuste(aba)
         alinhar(aba)
+        cabecalho(aba, background,font)
+        bordas(aba)
+        congelar_cabecalho(aba)
         criar_tabela(aba,nome_tabela)
         
     wb.save(nome_arquivo)
@@ -24,13 +27,13 @@ def gerenciar(nome_arquivo, lista_dados, sheet,nome_tabela):
     #remoção da primeira aba sem dados 
     remove(nome_arquivo) 
     
-def gerenciador_completo(nome_arquivo,lista_dados,sheet,nome_tabela):
+def gerenciador_completo(nome_arquivo,lista_dados,sheet,background, font, nome_tabela):
     
     #chama para criação do arquivo
     Excel_vazio(nome_arquivo)
     #chama o gerenciar
-    gerenciar(nome_arquivo,lista_dados,sheet,nome_tabela)
+    gerenciar(nome_arquivo,lista_dados,sheet,background,font,nome_tabela)
     
-def gerenciador_semcriar(nome_arquivo,lista_dados,sheet,nome_tabela):
+def gerenciador_semcriar(nome_arquivo,lista_dados,sheet,background,font,nome_tabela):
     
-    gerenciar(nome_arquivo,lista_dados,sheet,nome_tabela)
+    gerenciar(nome_arquivo,lista_dados,sheet,background,font,nome_tabela)

@@ -1,6 +1,9 @@
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table,TableStyleInfo
 from openpyxl.styles import Alignment
+from openpyxl.styles import PatternFill, Font, Border, Side
+from openpyxl.worksheet.protection import SheetProtection
+from openpyxl.styles import Protection
 
 def ajuste(sheet):
     #ajuste 
@@ -44,3 +47,32 @@ def alinhar(sheet):
         for row in sheet.iter_rows(min_row = 1, max_row= sheet.max_row, min_col = 1, max_col=sheet.max_column):
             for cell in row:
                 cell.alignment = alinhamento
+                
+def cabecalho(sheet, background,font):
+
+    background = PatternFill(fill_type="solid", fgColor=background)
+    texto = Font(color=font)
+
+    for cell in sheet[1]:
+        cell.fill = background
+        cell.font = texto
+        
+def bordas(sheet):
+    
+    borda = Border (
+        left=Side(style='thin', color='1F4E78'),
+        right=Side(style='thin',color='1F4E78'),
+        top=Side(style='thin',color='1F4E78'),
+        bottom=Side(style='thin',color='1F4E78')
+    )
+    
+    for row in sheet.iter_rows(min_row = 1, max_row = sheet.max_row, min_col = 1, max_col = sheet.max_column):
+        for cell in row:
+            cell.border = borda
+            
+def congelar_cabecalho(sheet):
+    #congelar o cabeçalho
+    sheet.freeze_panes = 'A2'
+    
+
+    
