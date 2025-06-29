@@ -2,8 +2,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table,TableStyleInfo
 from openpyxl.styles import Alignment
 from openpyxl.styles import PatternFill, Font, Border, Side
-from openpyxl.worksheet.protection import SheetProtection
-from openpyxl.styles import Protection
+from openpyxl import load_workbook 
 
 def ajuste(sheet):
     #ajuste 
@@ -74,5 +73,47 @@ def congelar_cabecalho(sheet):
     #congelar o cabeçalho
     sheet.freeze_panes = 'A2'
     
-
+def travar_tabela(sheet):
     
+    try:
+        for row in sheet.iter_rows():
+            for cell in row:
+                cell.protection = cell.protection.copy(locked= True)
+                
+        sheet.protection.sheet = True
+        sheet.protection.set_password('1234')
+        
+        print(f"Planilha {sheet} protegida com sucesso")
+        
+    except Exception as e:
+        
+        print(f"Erro ao proteger {sheet} : {e}")
+        
+def Copiar(nome_arquivo, sheet, aba_destino):
+    
+    wb = load_workbook(nome_arquivo)
+    
+    try:
+        
+        if aba_destino not in wb.sheetnames:
+            destino = wb.create_sheet(aba_destino)
+            
+        else:
+            
+            destino = wb[aba_destino]
+        
+        origem = wb[sheet]
+        
+        for linha in origem.iter_rows():
+            for celula in linha:
+                destino[celula.coordinate].value = celula.value
+                
+        wb.save(nome_arquivo)
+        
+        print(f"Aba {sheet} copiada com sucesso ")
+        
+    except Exception as e:
+        
+        print(f"Não foi possível copiar {sheet} erro: {e}")
+        
+        

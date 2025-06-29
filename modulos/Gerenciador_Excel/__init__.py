@@ -1,31 +1,31 @@
 from openpyxl import load_workbook
 from modulos.Excel_criar import Excel_vazio
 from modulos.Excel_cadastro import cadastro_excel
-from modulos.Excel_formatacao import ajuste, criar_tabela, alinhar, cabecalho, bordas, congelar_cabecalho
+from modulos.Excel_formatacao import ajuste, criar_tabela, alinhar, cabecalho, bordas, travar_tabela
 from modulos.Excel_remove import remove
 
 def gerenciar(nome_arquivo, lista_dados, sheet,background, font, nome_tabela):
     
     #cadastra
     cadastro_excel(nome_arquivo, lista_dados, sheet)
-    #formatação de ajuste de linha 
+    
     wb = load_workbook(nome_arquivo)
     
     if sheet in wb.sheetnames:
         aba = wb[sheet]
+        
         ajuste(aba)
         alinhar(aba)
         cabecalho(aba, background,font)
         bordas(aba)
-        congelar_cabecalho(aba)
         criar_tabela(aba,nome_tabela)
-        
+        travar_tabela(aba)    
+
     wb.save(nome_arquivo)
     
-    print(f"{nome_arquivo} atualizado com sucesso")
-    
-    #remoção da primeira aba sem dados 
     remove(nome_arquivo) 
+
+    print(f"{nome_arquivo} atualizado com sucesso")
     
 def gerenciador_completo(nome_arquivo,lista_dados,sheet,background, font, nome_tabela):
     
