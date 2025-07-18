@@ -1,6 +1,7 @@
 import os 
 from openpyxl import Workbook 
 from openpyxl import load_workbook
+
 def Excel_vazio(nome_arquivo):
     
     if not os.path.exists(nome_arquivo):
@@ -12,7 +13,7 @@ def Excel_vazio(nome_arquivo):
     else:
         print(f"{nome_arquivo} já existente")
 
-def planilha_nova(nome_arquivo, aba_destino):
+def Planilha_nova(nome_arquivo, aba_destino):
     
     wb = load_workbook(nome_arquivo)
     

@@ -12,6 +12,7 @@ from modulos.Excel_criar import Excel_vazio
 from modulos.Gerenciador_Excel import gerenciador_semcriar
 from modulos.Complemento_Excel import complementos
 from modulos.Excel_buscador import Excel_existente
+from modulos.DashBoard_Excel import DashBoard
 
 #listas vazias para armazenar cadastro de PF e PJ
 cadastro_PF , cadastro_PJ = [] , []
@@ -120,16 +121,16 @@ while True:
         if cadastro_PF:
             gerenciador_semcriar(nome_arquivo,cadastro_PF,origemPF,fundo,fonte,nome_tabelaPF)
             complementos(nome_arquivo,origemPF,destinoPF,"ConsultasPF",fundo,fonte)
-
+            DashBoard(nome_arquivo,"DASHBOARD",destinoPF)
         #chama a função para pessoa jurídica    
         if cadastro_PJ:
             gerenciador_semcriar(nome_arquivo,cadastro_PJ,origemPJ,fundo, fonte,nome_tabelaPJ)
             
-        
         funcoes.separador()
         #mostra quantos foram cadastrados tanto de pessoa fisica como juridica
         funcoes.PrintcomPausa(f'Foram contabilizados {cf} Pessoa Fisica e {cj} Pessoa Juridíca')
         #encerra o loop
+        
         break
     else:
         print(f'\033[31mDigite uma opção válida\033[m')

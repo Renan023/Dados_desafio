@@ -7,7 +7,7 @@ def complementos(nome_arquivo, origem, aba_destino,nome_tabela,background,font):
     
     wb = load_workbook(nome_arquivo)
     aba = wb[aba_destino]
-    
+
     ajuste(aba)
     alinhar(aba)
     bordas(aba)
