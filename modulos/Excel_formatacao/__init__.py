@@ -3,6 +3,7 @@ from openpyxl.worksheet.table import Table,TableStyleInfo
 from openpyxl.styles import Alignment
 from openpyxl.styles import PatternFill, Font, Border, Side
 from openpyxl import load_workbook 
+import xlwings as xw 
 
 def ajuste(sheet):
     #ajuste 
@@ -116,4 +117,10 @@ def Copiar(nome_arquivo, sheet, aba_destino):
         
         print(f"Não foi possível copiar {sheet} erro: {e}")
         
-        
+def RemoverGridlines(sheet):
+    
+    color_fill = PatternFill(start_color="F2F2F2", end_color="F2F2F2",fill_type="solid")
+    
+    for row in sheet.iter_rows(min_row= 1, max_row = 22, min_col = 1 , max_col = 17):
+        for cell in row :
+            cell.fill = color_fill

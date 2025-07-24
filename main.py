@@ -121,7 +121,7 @@ while True:
         if cadastro_PF:
             gerenciador_semcriar(nome_arquivo,cadastro_PF,origemPF,fundo,fonte,nome_tabelaPF)
             complementos(nome_arquivo,origemPF,destinoPF,"ConsultasPF",fundo,fonte)
-            DashBoard(nome_arquivo,"DASHBOARD",destinoPF)
+            DashBoard(nome_arquivo,"DASHBOARD","Clientes por Mês",destinoPF,start_row=7)
         #chama a função para pessoa jurídica    
         if cadastro_PJ:
             gerenciador_semcriar(nome_arquivo,cadastro_PJ,origemPJ,fundo, fonte,nome_tabelaPJ)
