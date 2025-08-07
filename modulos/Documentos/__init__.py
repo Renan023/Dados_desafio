@@ -51,9 +51,10 @@ def VIE(ie):
             ie = character.character(ie).strip().replace('.','').replace('-','')
             if ie.lower() == 'isento':
                 return 'ISENTO'
-            if ie.isdigit() or len(ie) > 9 and len(ie) < 15:
+            elif ie.isdigit() and  9  <= len(ie) <= 12:
+                return ie
+            else:
                 print('\033[31mDigite uma IE válida\033[m')
-                continue
         except KeyboardInterrupt:
             print('\033[31mInterrompido pelo usuário\033[m')
             break

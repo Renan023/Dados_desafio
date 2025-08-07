@@ -1,5 +1,6 @@
 import time
 import os
+from datetime import datetime
 
 def title(msg):
     #exibe título centralizao com uma linnha superior e inferior
@@ -39,3 +40,16 @@ def ID(caminho = 'id.txt'):
         arquivo.write(str(new_a))
 
     return new_a
+
+def saudacao():
+    
+    hora = datetime.now().hour
+    
+    if hora < 12:
+        return "Bom Dia ☀️"
+    elif hora < 18:
+        return "Boa tarde ⛅"
+    else:
+        return "Boa noite 🌜"
+    
+    
